@@ -1,0 +1,20 @@
+<%- include('partials/header', { title: 'Nettsteder' }) %>
+  <h1>Nettsteder</h1>
+  <p class="lead">Oversikt over forhåndsregistrerte nettsteder som kan vurderes for tilgjengelighet.</p>
+
+  <% if (sites && sites.length > 0) { %>
+    <ul class="site-list">
+      <% sites.forEach(function(site) { %>
+        <li class="site-card">
+          <a href="/sites/<%= site._id %>" class="site-card-link">
+            <img src="<%= site.imagePath %>" alt="Forsidebilde for <%= site.title %>" class="site-thumb" width="400" height="250">
+            <h2 class="site-title"><%= site.title %></h2>
+          </a>
+          <a href="<%= site.url %>" target="_blank" rel="noopener noreferrer" class="site-url">Åpne nettstedet</a>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>Ingen nettsteder er registrert. Kjør <code>npm run seed</code> for å legge inn eksempeldata.</p>
+  <% } %>
+<%- include('partials/footer') %>

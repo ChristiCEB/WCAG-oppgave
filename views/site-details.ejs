@@ -1,0 +1,16 @@
+<%- include('partials/header', { title: site.title }) %>
+  <nav class="breadcrumb">
+    <a href="/">Nettsteder</a>
+    <span aria-hidden="true"> / </span>
+    <span><%= site.title %></span>
+  </nav>
+
+  <article class="site-detail">
+    <h1><%= site.title %></h1>
+    <img src="<%= site.imagePath %>" alt="Forsidebilde for <%= site.title %>" class="site-detail-image" width="400" height="250">
+    <p>
+      <a href="<%= site.url %>" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Åpne nettstedet</a>
+    </p>
+    <p class="meta">Registrert: <%= new Date(site.createdAt).toLocaleDateString('nb-NO') %></p>
+  </article>
+<%- include('partials/footer') %>
