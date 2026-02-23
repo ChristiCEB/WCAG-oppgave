@@ -1,1 +1,25 @@
-<% /* Registrering – implementeres i iterasjon 1 */ %>
+<%- include('partials/header', { title: 'Registrer deg' }) %>
+  <h1>Registrer deg</h1>
+
+  <% if (feil && feil.length > 0) { %>
+    <ul class="feilmeldinger" role="alert">
+      <% feil.forEach(function(m) { %><li><%= m %></li><% }); %>
+    </ul>
+  <% } %>
+
+  <form method="post" action="/register" class="auth-form">
+    <label for="username">Brukernavn</label>
+    <input type="text" id="username" name="username" autocomplete="username" required
+           value="<%= typeof username !== 'undefined' && username ? username.replace(/"/g, '&quot;') : '' %>">
+
+    <label for="password">Passord</label>
+    <input type="password" id="password" name="password" autocomplete="new-password" required minlength="6">
+
+    <label for="bekreftPassord">Bekreft passord</label>
+    <input type="password" id="bekreftPassord" name="bekreftPassord" autocomplete="new-password" required minlength="6">
+
+    <button type="submit" class="btn btn-primary">Registrer deg</button>
+  </form>
+
+  <p>Har du allerede konto? <a href="/login">Logg inn</a>.</p>
+<%- include('partials/footer') %>

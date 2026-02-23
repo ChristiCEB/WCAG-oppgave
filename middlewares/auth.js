@@ -1,1 +1,8 @@
-// Auth-middelware – implementeres i iterasjon 1
+function requireAuth(req, res, next) {
+  if (!req.session || !req.session.user) {
+    return res.redirect('/login');
+  }
+  next();
+}
+
+module.exports = { requireAuth };

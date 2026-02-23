@@ -9,5 +9,16 @@
 <body>
   <header class="site-header">
     <a href="/" class="logo">WCAG vurdering</a>
+    <nav class="header-nav" aria-label="Brukermeny">
+      <% if (typeof user !== 'undefined' && user) { %>
+        <span class="user-status">Logget inn som <strong><%= user.username %></strong></span>
+        <form action="/logout" method="post" class="logout-form">
+          <button type="submit" class="btn btn-outline">Logg ut</button>
+        </form>
+      <% } else { %>
+        <a href="/login" class="btn btn-outline">Logg inn</a>
+        <a href="/register" class="btn btn-primary">Registrer deg</a>
+      <% } %>
+    </nav>
   </header>
   <main class="main-content">

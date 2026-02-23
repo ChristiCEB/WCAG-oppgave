@@ -8,14 +8,19 @@
     "dev": "node --watch app.js",
     "seed": "node scripts/seedSites.js"
   },
-  "keywords": ["wcag", "accessibility", "express", "mongodb"],
+  "keywords": [
+    "wcag",
+    "accessibility",
+    "express",
+    "mongodb"
+  ],
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^5.1.0",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
-    "express": "^4.18.2",
+    "express": "^4.22.1",
     "express-session": "^1.17.3",
     "mongoose": "^8.0.3"
   }

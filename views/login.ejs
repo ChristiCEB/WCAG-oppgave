@@ -1,1 +1,21 @@
-<% /* Innlogging – implementeres i iterasjon 1 */ %>
+<%- include('partials/header', { title: 'Logg inn' }) %>
+  <h1>Logg inn</h1>
+
+  <% if (feil && feil.length > 0) { %>
+    <ul class="feilmeldinger" role="alert">
+      <% feil.forEach(function(m) { %><li><%= m %></li><% }); %>
+    </ul>
+  <% } %>
+
+  <form method="post" action="/login" class="auth-form">
+    <label for="username">Brukernavn</label>
+    <input type="text" id="username" name="username" autocomplete="username" required>
+
+    <label for="password">Passord</label>
+    <input type="password" id="password" name="password" autocomplete="current-password" required>
+
+    <button type="submit" class="btn btn-primary">Logg inn</button>
+  </form>
+
+  <p>Har du ikke konto? <a href="/register">Registrer deg</a>.</p>
+<%- include('partials/footer') %>

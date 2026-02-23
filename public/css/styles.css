@@ -13,6 +13,11 @@ body {
 }
 
 .site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   padding: 1rem 0;
   border-bottom: 1px solid #ddd;
 }
@@ -22,6 +27,33 @@ body {
   font-size: 1.25rem;
   color: #333;
   text-decoration: none;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-status {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.logout-form {
+  margin: 0;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #0066cc;
+  border: 1px solid #0066cc;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn-outline:hover {
+  background: #f0f7ff;
 }
 
 .logo:hover {
@@ -149,4 +181,42 @@ code {
   padding: 0.2em 0.4em;
   border-radius: 4px;
   font-size: 0.9em;
+}
+
+.feilmeldinger {
+  color: #b00;
+  background: #fee;
+  padding: 1rem 1rem 1rem 2rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.auth-form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+.auth-form label:first-of-type {
+  margin-top: 0;
+}
+
+.auth-form input {
+  width: 100%;
+  max-width: 20rem;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.auth-form button {
+  margin-top: 1.25rem;
+  cursor: pointer;
+  border: none;
+}
+
+.auth-form + p {
+  margin-top: 1.5rem;
 }
