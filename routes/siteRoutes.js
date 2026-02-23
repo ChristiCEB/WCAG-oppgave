@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Site = require('../models/Site');
+const Review = require('../models/Review');
 
 router.get('/', async (req, res) => {
   try {
@@ -18,7 +19,10 @@ router.get('/sites/:id', async (req, res) => {
     if (!site) {
       return res.status(404).send('Nettstedet ble ikke funnet.');
     }
-    res.render('site-details', { title: site.title, site });
+    const reviews = await Review.find({ site: site._id }).populate('user', 'username').sort({ createdAt: -1 });
+    const scores = reviews.map(r => r.wcagScore);
+    const averageScore = scores.length ? (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1) : null;
+    res.render('site-details', { title: site.title, site, reviews, averageScore });
   } catch (err) {
     console.error(err);
     res.status(500).send('Noe gikk galt.');

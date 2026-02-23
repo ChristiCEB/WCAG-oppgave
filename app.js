@@ -6,6 +6,7 @@ const MongoStore = require('connect-mongo');
 const connectDB = require('./config/db');
 const siteRoutes = require('./routes/siteRoutes');
 const authRoutes = require('./routes/authRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -31,6 +32,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/', reviewRoutes);
 app.use('/', siteRoutes);
 app.use('/', authRoutes);
 

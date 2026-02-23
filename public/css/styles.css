@@ -220,3 +220,89 @@ code {
 .auth-form + p {
   margin-top: 1.5rem;
 }
+
+.reviews-section {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #ddd;
+}
+
+.reviews-section h2 {
+  font-size: 1.25rem;
+  margin-top: 0;
+}
+
+.reviews-section h3 {
+  font-size: 1.1rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.average-score {
+  font-size: 1rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.login-prompt {
+  margin: 0.5rem 0 1rem;
+}
+
+.review-form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+.review-form select,
+.review-form input,
+.review-form textarea {
+  display: block;
+  width: 100%;
+  max-width: 20rem;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.review-form textarea {
+  resize: vertical;
+  min-height: 4rem;
+}
+
+.review-form button {
+  margin-top: 1rem;
+  cursor: pointer;
+  border: none;
+}
+
+.review-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+
+.review-item {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.review-meta {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0 0 0.5rem;
+}
+
+.review-summary {
+  font-weight: 500;
+  margin: 0;
+}
+
+.review-details {
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+  color: #444;
+}

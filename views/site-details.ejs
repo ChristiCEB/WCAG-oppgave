@@ -13,4 +13,62 @@
     </p>
     <p class="meta">Registrert: <%= new Date(site.createdAt).toLocaleDateString('nb-NO') %></p>
   </article>
+
+  <section class="reviews-section" aria-labelledby="vurderinger-heading">
+    <h2 id="vurderinger-heading">Vurderinger</h2>
+
+    <% if (typeof averageScore === 'string' && averageScore) { %>
+      <p class="average-score">Gjennomsnittscore: <strong><%= averageScore %></strong> av 5</p>
+    <% } %>
+
+    <% if (typeof user !== 'undefined' && user) { %>
+      <h3>Skriv en vurdering</h3>
+      <% if (typeof feil !== 'undefined' && feil && feil.length > 0) { %>
+        <ul class="feilmeldinger" role="alert">
+          <% feil.forEach(function(m) { %><li><%= m %></li><% }); %>
+        </ul>
+      <% } %>
+      <form method="post" action="/sites/<%= site._id %>/reviews" class="review-form">
+        <label for="wcagScore">Vurdering (1–5)</label>
+        <select id="wcagScore" name="wcagScore" required>
+          <% for (let i = 1; i <= 5; i++) { %>
+            <option value="<%= i %>" <%= (typeof formData !== 'undefined' && formData && Number(formData.wcagScore) === i) ? 'selected' : (typeof formData === 'undefined' && i === 3) ? 'selected' : '' %>><%= i %></option>
+          <% } %>
+        </select>
+
+        <label for="summary">Kort oppsummering</label>
+        <input type="text" id="summary" name="summary" required maxlength="200"
+               value="<%= typeof formData !== 'undefined' && formData && formData.summary ? formData.summary.replace(/"/g, '&quot;') : '' %>">
+
+        <label for="details">Detaljer (valgfritt)</label>
+        <textarea id="details" name="details" rows="4"><%= typeof formData !== 'undefined' && formData && formData.details ? formData.details : '' %></textarea>
+
+        <button type="submit" class="btn btn-primary">Send vurdering</button>
+      </form>
+    <% } else { %>
+      <p class="login-prompt"><a href="/login">Logg inn</a> for å vurdere dette nettstedet.</p>
+    <% } %>
+
+    <h3>Alle vurderinger</h3>
+    <% const reviewList = typeof reviews !== 'undefined' && reviews ? reviews : []; %>
+    <% if (reviewList.length > 0) { %>
+      <ul class="review-list">
+        <% reviewList.forEach(function(review) { %>
+          <li class="review-item">
+            <p class="review-meta">
+              <strong><%= review.user ? review.user.username : 'Ukjent' %></strong>
+              · <%= new Date(review.createdAt).toLocaleDateString('nb-NO') %>
+              · Score: <%= review.wcagScore %>/5
+            </p>
+            <p class="review-summary"><%= review.summary %></p>
+            <% if (review.details) { %>
+              <p class="review-details"><%= review.details %></p>
+            <% } %>
+          </li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p>Ingen vurderinger ennå.</p>
+    <% } %>
+  </section>
 <%- include('partials/footer') %>
