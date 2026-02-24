@@ -82,9 +82,21 @@ function getFaq(req, res) {
   res.render('help', { title: 'Hjelp' });
 }
 
+/** Kontaktside – viser kontaktinfo og skjema (ingen ekte e-post sending) */
+function getKontakt(req, res) {
+  res.render('kontakt', { title: 'Kontakt' });
+}
+
+/** Mottar kontaktskjema – viser takkmelding og anbefaler e-post til support */
+function postKontakt(req, res) {
+  res.render('kontakt', { title: 'Kontakt', takk: true });
+}
+
 module.exports = {
   getIndex,
   getSiteDetails,
   getFaq,
+  getKontakt,
+  postKontakt,
   buildVoteData
 };

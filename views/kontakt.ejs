@@ -1,0 +1,38 @@
+<%- include('partials/header', { title: 'Kontakt' }) %>
+  <h1>Kontakt</h1>
+  <p class="lead">Vi vil gjerne høre fra deg. Her kan du få hjelp eller sende en melding.</p>
+
+  <section class="kontakt-info" aria-labelledby="kontakt-slik">
+    <h2 id="kontakt-slik">Slik får du hjelp</h2>
+    <p>Har du spørsmål om WCAG-vurderingsløsningen, tekniske problemer eller ønsker å gi tilbakemelding? Send oss en e-post eller bruk skjemaet nedenfor. Vi svarer så raskt vi kan.</p>
+    <p>
+      <strong>E-post:</strong>
+      <a href="mailto:support@eksempel.no">support@eksempel.no</a>
+    </p>
+  </section>
+
+  <% if (typeof takk !== 'undefined' && takk) { %>
+    <div class="kontakt-takk" role="status">
+      <p><strong>Takk for henvendelsen.</strong> Vi har mottatt meldingen din. For svar, kontakt oss gjerne på <a href="mailto:support@eksempel.no">support@eksempel.no</a>.</p>
+    </div>
+  <% } else { %>
+    <section class="kontakt-skjema" aria-labelledby="kontakt-skjema-heading">
+      <h2 id="kontakt-skjema-heading">Send oss en melding</h2>
+      <form method="post" action="/kontakt" class="kontakt-form">
+        <label for="kontakt-navn">Navn</label>
+        <input type="text" id="kontakt-navn" name="navn" required autocomplete="name">
+
+        <label for="kontakt-epost">E-post</label>
+        <input type="email" id="kontakt-epost" name="epost" required autocomplete="email">
+
+        <label for="kontakt-emne">Emne</label>
+        <input type="text" id="kontakt-emne" name="emne" required>
+
+        <label for="kontakt-melding">Melding</label>
+        <textarea id="kontakt-melding" name="melding" rows="5" required></textarea>
+
+        <button type="submit" class="btn btn-primary">Send melding</button>
+      </form>
+    </section>
+  <% } %>
+<%- include('partials/footer') %>

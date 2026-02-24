@@ -412,3 +412,57 @@ code {
 .help-back a:hover {
   text-decoration: underline;
 }
+
+.kontakt-info {
+  margin-bottom: 2rem;
+}
+
+.kontakt-info h2,
+.kontakt-skjema h2 {
+  font-size: 1.15rem;
+  margin: 0 0 0.5rem;
+}
+
+.kontakt-takk {
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.kontakt-skjema {
+  margin-top: 1.5rem;
+}
+
+.kontakt-form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+.kontakt-form label:first-of-type {
+  margin-top: 0;
+}
+
+.kontakt-form input,
+.kontakt-form textarea {
+  width: 100%;
+  max-width: 28rem;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.kontakt-form textarea {
+  resize: vertical;
+  min-height: 5rem;
+}
+
+.kontakt-form button {
+  margin-top: 1.25rem;
+  cursor: pointer;
+  border: none;
+}

@@ -31,6 +31,7 @@ const sites = [
 ];
 
 async function seed() {
+  let exitCode = 0;
   try {
     await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/wcag-oppgave');
     await Site.deleteMany({});
@@ -38,9 +39,10 @@ async function seed() {
     console.log(`Seed fullført: ${sites.length} nettsteder lagt inn.`);
   } catch (err) {
     console.error('Seed feilet:', err);
+    exitCode = 1;
   } finally {
     await mongoose.connection.close();
-    process.exit(0);
+    process.exit(exitCode);
   }
 }
 
