@@ -8,11 +8,18 @@ async function postCreateReview(req, res) {
   const { wcagScore, summary, details } = req.body;
   const feil = [];
 
-  if (!wcagScore || wcagScore < 1 || wcagScore > 5) {
-    feil.push('Vurdering må være mellom 1 og 5.');
+  // Servervalidering: score må være tall mellom 1 og 5
+  const scoreNum = Number(wcagScore);
+  if (wcagScore === '' || wcagScore == null || Number.isNaN(scoreNum) || scoreNum < 1 || scoreNum > 5) {
+    feil.push('Vurdering må være et tall mellom 1 og 5.');
   }
-  if (!summary || !summary.trim()) {
+  // Obligatorisk kort oppsummering
+  if (!summary || typeof summary !== 'string') {
     feil.push('Kort oppsummering er påkrevd.');
+  } else if (!summary.trim()) {
+    feil.push('Kort oppsummering kan ikke være tom.');
+  } else if (summary.trim().length > 200) {
+    feil.push('Kort oppsummering kan være maks 200 tegn.');
   }
 
   try {
@@ -47,7 +54,7 @@ async function postCreateReview(req, res) {
     await Review.create({
       site: siteId,
       user: req.session.user.id,
-      wcagScore: Number(wcagScore),
+      wcagScore: scoreNum,
       summary: summary.trim(),
       details: (details || '').trim()
     });

@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 
+/** Vis registreringsskjema (kun for uinnloggede) */
 function getRegister(req, res) {
   if (req.session.user) {
     return res.redirect('/');
@@ -15,7 +16,8 @@ async function postRegister(req, res) {
   const { username, password, bekreftPassord } = req.body;
   const feil = [];
 
-  if (!username || !username.trim()) {
+  // Servervalidering – obligatoriske felt og regler
+  if (!username || typeof username !== 'string' || !username.trim()) {
     feil.push('Brukernavn er påkrevd.');
   }
   if (!password) {
@@ -74,7 +76,7 @@ async function postLogin(req, res) {
   const { username, password } = req.body;
   const feil = [];
 
-  if (!username || !username.trim()) {
+  if (!username || typeof username !== 'string' || !username.trim()) {
     feil.push('Brukernavn er påkrevd.');
   }
   if (!password) {

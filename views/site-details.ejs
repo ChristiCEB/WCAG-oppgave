@@ -23,11 +23,7 @@
 
     <% if (typeof user !== 'undefined' && user) { %>
       <h3>Skriv en vurdering</h3>
-      <% if (typeof feil !== 'undefined' && feil && feil.length > 0) { %>
-        <ul class="feilmeldinger" role="alert">
-          <% feil.forEach(function(m) { %><li><%= m %></li><% }); %>
-        </ul>
-      <% } %>
+      <%- include('partials/errors') %>
       <form method="post" action="/sites/<%= site._id %>/reviews" class="review-form">
         <label for="wcagScore">Vurdering (1–5)</label>
         <select id="wcagScore" name="wcagScore" required>

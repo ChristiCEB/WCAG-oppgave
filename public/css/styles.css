@@ -35,6 +35,16 @@ body {
   gap: 0.75rem;
 }
 
+.header-link {
+  font-size: 0.95rem;
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.header-link:hover {
+  text-decoration: underline;
+}
+
 .user-status {
   font-size: 0.9rem;
   color: #555;
@@ -369,4 +379,36 @@ code {
   font-size: 0.9rem;
   color: #555;
   margin: 0.5rem 0;
+}
+
+.help-section {
+  margin-bottom: 1.5rem;
+}
+
+.help-section h2 {
+  font-size: 1.15rem;
+  margin: 0 0 0.5rem;
+}
+
+.help-section ul {
+  margin: 0.5rem 0 1rem 1.5rem;
+}
+
+.help-section li {
+  margin-bottom: 0.25rem;
+}
+
+.help-back {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.help-back a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.help-back a:hover {
+  text-decoration: underline;
 }

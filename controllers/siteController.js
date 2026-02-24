@@ -19,6 +19,7 @@ async function buildVoteData(reviewIds, currentUserId) {
   return byReview;
 }
 
+/** Forside: liste over nettsteder med antall vurderinger og snitt, sortert */
 async function getIndex(req, res) {
   try {
     const sites = await Site.find();
@@ -47,6 +48,7 @@ async function getIndex(req, res) {
   }
 }
 
+/** Detaljside for ett nettsted: vurderinger, stemmer, sortering */
 async function getSiteDetails(req, res) {
   try {
     const site = await Site.findById(req.params.id);
@@ -75,8 +77,14 @@ async function getSiteDetails(req, res) {
   }
 }
 
+/** Hjelpeside (FAQ) – forklarer bruk av løsningen */
+function getFaq(req, res) {
+  res.render('help', { title: 'Hjelp' });
+}
+
 module.exports = {
   getIndex,
   getSiteDetails,
+  getFaq,
   buildVoteData
 };

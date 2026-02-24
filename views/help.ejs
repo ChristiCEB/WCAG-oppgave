@@ -1,1 +1,45 @@
-<% /* Hjelp – implementeres i iterasjon 1 */ %>
+<%- include('partials/header', { title: 'Hjelp' }) %>
+  <h1>Hjelp</h1>
+  <p class="lead">Slik bruker du WCAG-vurderingsløsningen.</p>
+
+  <section class="help-section" aria-labelledby="finn-nettsted">
+    <h2 id="finn-nettsted">Hvordan finner jeg et nettsted?</h2>
+    <p>På <a href="/">forsiden</a> ser du en liste over alle forhåndsregistrerte nettsteder. Klikk på et nettsted (navn eller bilde) for å åpne detaljsiden. Der kan du lese vurderinger og selv vurdere nettstedet hvis du er innlogget. Du kan også sortere listen etter <strong>høyest score</strong> eller <strong>flest vurderinger</strong>.</p>
+  </section>
+
+  <section class="help-section" aria-labelledby="vurdere">
+    <h2 id="vurdere">Hvordan vurderer jeg et nettsted?</h2>
+    <p>Du må være <a href="/login">innlogget</a> for å skrive en vurdering. Gå til detaljsiden for nettstedet og fyll ut skjemaet:</p>
+    <ul>
+      <li><strong>Vurdering (1–5):</strong> Velg hvor godt nettstedet oppfyller tilgjengelighetskrav.</li>
+      <li><strong>Kort oppsummering:</strong> Obligatorisk. Beskriv kort din vurdering.</li>
+      <li><strong>Detaljer:</strong> Valgfritt. Du kan utdype mer her.</li>
+    </ul>
+    <p>Klikk «Send vurdering» for å lagre. Vurderingen din vises med brukernavn og dato.</p>
+  </section>
+
+  <section class="help-section" aria-labelledby="score">
+    <h2 id="score">Hva betyr scoren?</h2>
+    <p>Scoren (1–5) angir hvor godt nettstedet vurderes å oppfylle WCAG-tilgjengelighetskrav:</p>
+    <ul>
+      <li><strong>1</strong> – Svært dårlig tilgjengelighet</li>
+      <li><strong>2</strong> – Delvis tilgjengelig, mange mangler</li>
+      <li><strong>3</strong> – Noenlunde tilgjengelig, noe å forbedre</li>
+      <li><strong>4</strong> – God tilgjengelighet, små justeringer</li>
+      <li><strong>5</strong> – Svært god tilgjengelighet</li>
+    </ul>
+    <p>Gjennomsnittsscoren for nettstedet vises på detaljsiden og på forsiden (per nettsted).</p>
+  </section>
+
+  <section class="help-section" aria-labelledby="tilbakemelding">
+    <h2 id="tilbakemelding">Hvordan fungerer positiv/negativ tilbakemelding?</h2>
+    <p>Under hver vurdering kan innloggede brukere stemme på om vurderingen er nyttig:</p>
+    <ul>
+      <li><strong>👍 (positiv):</strong> Vurderingen er nyttig.</li>
+      <li><strong>👎 (negativ):</strong> Vurderingen er lite nyttig.</li>
+    </ul>
+    <p>Du kan kun stemme én gang per vurdering; du kan endre stemmen din ved å klikke på det andre alternativet. Du kan ikke stemme på din egen vurdering. «Nyttighet»-summen (f.eks. +3 eller −1) viser totalt antall positive minus negative stemmer. Vurderinger kan sorteres etter <strong>nyttighet</strong> (mest nyttige først) eller <strong>nyeste</strong>.</p>
+  </section>
+
+  <p class="help-back"><a href="/">Tilbake til nettstedene</a></p>
+<%- include('partials/footer') %>

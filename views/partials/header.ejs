@@ -9,7 +9,8 @@
 <body>
   <header class="site-header">
     <a href="/" class="logo">WCAG vurdering</a>
-    <nav class="header-nav" aria-label="Brukermeny">
+    <nav class="header-nav" aria-label="Hovednavigasjon">
+      <a href="/faq" class="header-link">Hjelp</a>
       <% if (typeof user !== 'undefined' && user) { %>
         <span class="user-status">Logget inn som <strong><%= user.username %></strong></span>
         <form action="/logout" method="post" class="logout-form">

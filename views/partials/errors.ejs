@@ -1,0 +1,5 @@
+<% if (typeof feil !== 'undefined' && feil && feil.length > 0) { %>
+<ul class="feilmeldinger" role="alert">
+  <% feil.forEach(function(m) { %><li><%= m %></li><% }); %>
+</ul>
+<% } %>

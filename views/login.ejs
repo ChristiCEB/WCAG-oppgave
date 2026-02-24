@@ -1,11 +1,7 @@
 <%- include('partials/header', { title: 'Logg inn' }) %>
   <h1>Logg inn</h1>
 
-  <% if (feil && feil.length > 0) { %>
-    <ul class="feilmeldinger" role="alert">
-      <% feil.forEach(function(m) { %><li><%= m %></li><% }); %>
-    </ul>
-  <% } %>
+  <%- include('partials/errors') %>
 
   <form method="post" action="/login" class="auth-form">
     <label for="username">Brukernavn</label>
