@@ -3,6 +3,14 @@
   <p class="lead">Oversikt over forhåndsregistrerte nettsteder som kan vurderes for tilgjengelighet.</p>
 
   <% if (sites && sites.length > 0) { %>
+    <p class="sort-links">Sorter: 
+      <% const currentSiteSort = (typeof siteSort !== 'undefined' && siteSort) ? siteSort : 'score'; %>
+      <% if (currentSiteSort === 'score') { %>
+        <strong>Høyest score</strong> · <a href="/?sort=antall">Flest vurderinger</a>
+      <% } else { %>
+        <a href="/?sort=score">Høyest score</a> · <strong>Flest vurderinger</strong>
+      <% } %>
+    </p>
     <ul class="site-list">
       <% sites.forEach(function(site) { %>
         <li class="site-card">
@@ -10,6 +18,12 @@
             <img src="<%= site.imagePath %>" alt="Forsidebilde for <%= site.title %>" class="site-thumb" width="400" height="250">
             <h2 class="site-title"><%= site.title %></h2>
           </a>
+          <p class="site-stats">
+            <%= site.reviewCount ?? 0 %> vurderinger
+            <% if (site.averageScore !== null && site.averageScore !== undefined) { %>
+              · Gjennomsnitt: <%= site.averageScore %> av 5
+            <% } %>
+          </p>
           <a href="<%= site.url %>" target="_blank" rel="noopener noreferrer" class="site-url">Åpne nettstedet</a>
         </li>
       <% }); %>

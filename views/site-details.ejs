@@ -50,10 +50,20 @@
     <% } %>
 
     <h3>Alle vurderinger</h3>
+    <p class="sort-links">Sorter: 
+      <% const currentReviewSort = (typeof reviewSort !== 'undefined' && reviewSort) ? reviewSort : 'nyttighet'; %>
+      <% if (currentReviewSort === 'nyttighet') { %>
+        <strong>Nyttighet</strong> · <a href="/sites/<%= site._id %>?sort=nyeste">Nyeste</a>
+      <% } else { %>
+        <a href="/sites/<%= site._id %>?sort=nyttighet">Nyttighet</a> · <strong>Nyeste</strong>
+      <% } %>
+    </p>
     <% const reviewList = typeof reviews !== 'undefined' && reviews ? reviews : []; %>
     <% if (reviewList.length > 0) { %>
       <ul class="review-list">
+        <% const voteDataMap = typeof voteData !== 'undefined' && voteData ? voteData : {}; %>
         <% reviewList.forEach(function(review) { %>
+          <% const rId = review._id.toString(); const vd = voteDataMap[rId] || { sum: 0, userVote: null }; const isOwn = typeof user !== 'undefined' && user && review.user && (review.user._id ? String(review.user._id) : String(review.user)) === String(user.id); %>
           <li class="review-item">
             <p class="review-meta">
               <strong><%= review.user ? review.user.username : 'Ukjent' %></strong>
@@ -64,6 +74,21 @@
             <% if (review.details) { %>
               <p class="review-details"><%= review.details %></p>
             <% } %>
+            <div class="review-votes" aria-label="Nyttighet av vurderingen">
+              <span class="vote-sum">Nyttighet: <strong><%= vd.sum >= 0 ? '+' : '' %><%= vd.sum %></strong></span>
+              <% if (isOwn) { %>
+                <span class="own-review-msg">Du kan ikke stemme på egen vurdering.</span>
+              <% } else if (typeof user !== 'undefined' && user) { %>
+                <form method="post" action="/reviews/<%= review._id %>/vote" class="vote-form vote-form-up">
+                  <input type="hidden" name="vote" value="1">
+                  <button type="submit" class="vote-btn <%= vd.userVote === 1 ? 'vote-active' : '' %>" title="Stem positivt" aria-label="Stem positivt">👍</button>
+                </form>
+                <form method="post" action="/reviews/<%= review._id %>/vote" class="vote-form vote-form-down">
+                  <input type="hidden" name="vote" value="-1">
+                  <button type="submit" class="vote-btn <%= vd.userVote === -1 ? 'vote-active' : '' %>" title="Stem negativt" aria-label="Stem negativt">👎</button>
+                </form>
+              <% } %>
+            </div>
           </li>
         <% }); %>
       </ul>
