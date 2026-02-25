@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-/** Kobler til MongoDB; avslutter prosessen ved feil slik at appen ikke starter uten DB */
+// Kobler til MongoDB – stopper appen hvis det feiler
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI);

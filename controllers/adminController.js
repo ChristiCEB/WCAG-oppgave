@@ -1,6 +1,6 @@
 const Report = require('../models/Report');
 
-/** Admin-side: liste over rapporterte vurderinger */
+// Admin: viser alle rapporter som er sendt inn
 async function getReports(req, res) {
   try {
     const reports = await Report.find()

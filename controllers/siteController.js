@@ -19,7 +19,7 @@ async function buildVoteData(reviewIds, currentUserId) {
   return byReview;
 }
 
-/** Forside: liste over nettsteder med antall vurderinger og snitt, sortert */
+// Forsiden – alle nettsteder med antall vurderinger og snitt
 async function getIndex(req, res) {
   try {
     const sites = await Site.find();
@@ -48,7 +48,7 @@ async function getIndex(req, res) {
   }
 }
 
-/** Detaljside for ett nettsted: vurderinger, stemmer, sortering */
+// Enkelt nettsted med vurderinger og stemmer
 async function getSiteDetails(req, res) {
   try {
     const site = await Site.findById(req.params.id);
@@ -85,17 +85,17 @@ async function getSiteDetails(req, res) {
   }
 }
 
-/** Hjelpeside (FAQ) – forklarer bruk av løsningen */
+// Hjelp/FAQ-siden
 function getFaq(req, res) {
   res.render('help', { title: 'Hjelp' });
 }
 
-/** Kontaktside – viser kontaktinfo og skjema (ingen ekte e-post sending) */
+// Kontaktsiden – info og skjema (e-post sendes ikke fra appen)
 function getKontakt(req, res) {
   res.render('kontakt', { title: 'Kontakt' });
 }
 
-/** Mottar kontaktskjema – viser takkmelding og anbefaler e-post til support */
+// Tar imot kontaktskjema og viser takk-melding
 function postKontakt(req, res) {
   res.render('kontakt', { title: 'Kontakt', takk: true });
 }

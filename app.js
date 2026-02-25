@@ -20,7 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 
-// Session lagres i MongoDB (connect-mongo) for stabilitet ved restart
+// Session i MongoDB så innlogging overlever restart
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -29,7 +29,7 @@ app.use(session({
   cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 }
 }));
 
-// Gjør innlogget bruker tilgjengelig i alle views
+// Sender bruker til alle sider (for header osv.)
 app.use((req, res, next) => {
   res.locals.user = req.session.user || null;
   next();

@@ -2,7 +2,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const Site = require('../models/Site');
 
-// Bildene ligger i public/img: digdir.png, nav.png, regjeringen.png, udir.png, brreg.png
+// Nettstedene som seedes – bilder i public/img
 const sites = [
   {
     title: 'Digdir – Digitaliseringsdirektoratet',

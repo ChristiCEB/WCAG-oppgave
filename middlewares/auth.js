@@ -1,4 +1,4 @@
-/** Redirect til /login hvis bruker ikke er innlogget – brukes på beskyttede ruter */
+// Sender deg til innlogging hvis du ikke er logget inn
 function requireAuth(req, res, next) {
   if (!req.session || !req.session.user) {
     return res.redirect('/login');
@@ -6,7 +6,7 @@ function requireAuth(req, res, next) {
   next();
 }
 
-/** Redirect til / hvis bruker ikke er admin – brukes på admin-ruter */
+// Kun for admin – andre sendes til forsiden
 function requireAdmin(req, res, next) {
   if (!req.session || !req.session.user) {
     return res.redirect('/login');

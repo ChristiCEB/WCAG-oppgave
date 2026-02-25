@@ -9,12 +9,12 @@ async function postCreateReview(req, res) {
   const { wcagScore, summary, details } = req.body;
   const feil = [];
 
-  // Servervalidering: score må være tall mellom 1 og 5
+  // Score må være 1–5
   const scoreNum = Number(wcagScore);
   if (wcagScore === '' || wcagScore == null || Number.isNaN(scoreNum) || scoreNum < 1 || scoreNum > 5) {
     feil.push('Vurdering må være et tall mellom 1 og 5.');
   }
-  // Obligatorisk kort oppsummering
+  // Kort oppsummering må være med
   if (!summary || typeof summary !== 'string') {
     feil.push('Kort oppsummering er påkrevd.');
   } else if (!summary.trim()) {
@@ -97,7 +97,7 @@ async function postVote(req, res) {
   }
 }
 
-/** Vis skjema for å rapportere en vurdering */
+// Viser skjema for å rapportere en vurdering
 async function getReportForm(req, res) {
   try {
     const review = await Review.findById(req.params.reviewId).populate('site', 'title').populate('user', 'username');
@@ -109,7 +109,7 @@ async function getReportForm(req, res) {
   }
 }
 
-/** Mottar rapport – validerer kommentar, lagrer Report, redirect med bekreftelse */
+// Lagrer rapporten og sender bruker tilbake med bekreftelse
 async function postReport(req, res) {
   const { reviewId } = req.params;
   const comment = req.body.comment ? req.body.comment.trim() : '';
