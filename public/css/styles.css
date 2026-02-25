@@ -466,3 +466,57 @@ code {
   cursor: pointer;
   border: none;
 }
+
+.btn-report {
+  font-size: 0.85rem;
+  color: #666;
+  margin-left: 0.5rem;
+}
+
+.btn-report:hover {
+  color: #b00;
+}
+
+.report-bekreftelse {
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.report-context {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.admin-report-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+
+.admin-report-item {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.admin-report-meta {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0 0 0.5rem;
+}
+
+.admin-report-comment {
+  margin: 0.5rem 0;
+}
+
+.admin-report-review {
+  font-size: 0.9rem;
+  color: #444;
+  margin: 0.5rem 0 0;
+}

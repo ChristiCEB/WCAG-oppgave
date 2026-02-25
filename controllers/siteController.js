@@ -70,7 +70,15 @@ async function getSiteDetails(req, res) {
         return new Date(b.createdAt) - new Date(a.createdAt);
       });
     }
-    res.render('site-details', { title: site.title, site, reviews, averageScore, voteData, reviewSort });
+    res.render('site-details', {
+    title: site.title,
+    site,
+    reviews,
+    averageScore,
+    voteData,
+    reviewSort,
+    reported: req.query.reported === '1'
+  });
   } catch (err) {
     console.error(err);
     res.status(500).send('Noe gikk galt.');

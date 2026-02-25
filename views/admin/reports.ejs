@@ -1,0 +1,36 @@
+<%- include('../partials/header', { title: 'Rapporter' }) %>
+  <h1>Rapporterte vurderinger</h1>
+  <p class="lead">Oversikt over rapporter som brukere har sendt inn. (Sletting/avslutning kommer i neste iterasjon.)</p>
+
+  <% const reportList = typeof reports !== 'undefined' && reports ? reports : []; %>
+  <% if (reportList.length > 0) { %>
+    <ul class="admin-report-list">
+      <% reportList.forEach(function(r) { %>
+        <li class="admin-report-item">
+          <p class="admin-report-meta">
+            <strong>Dato:</strong> <%= new Date(r.createdAt).toLocaleString('nb-NO') %>
+            · <strong>Status:</strong> <%= r.status === 'resolved' ? 'Løst' : 'Åpen' %>
+            <% if (r.reportedBy && r.reportedBy.username) { %>
+              · <strong>Rapportert av:</strong> <%= r.reportedBy.username %>
+            <% } else { %>
+              · <strong>Rapportert av:</strong> Anonym
+            <% } %>
+          </p>
+          <p class="admin-report-comment"><strong>Kommentar:</strong> <%= r.comment %></p>
+          <% if (r.review) { %>
+            <p class="admin-report-review">
+              <strong>Vurdering:</strong>
+              <% if (r.review.site) { %> Nettsted: <%= r.review.site.title %>. <% } %>
+              <% if (r.review.user) { %> Av <%= r.review.user.username %>. <% } %>
+              «<%= r.review.summary %>»
+            </p>
+          <% } %>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>Ingen rapporter ennå.</p>
+  <% } %>
+
+  <p class="help-back"><a href="/">Tilbake til forsiden</a></p>
+<%- include('../partials/footer') %>

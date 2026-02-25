@@ -17,6 +17,10 @@
   <section class="reviews-section" aria-labelledby="vurderinger-heading">
     <h2 id="vurderinger-heading">Vurderinger</h2>
 
+    <% if (typeof reported !== 'undefined' && reported) { %>
+      <p class="report-bekreftelse" role="status">Rapporten er mottatt. Takk for at du hjelper til.</p>
+    <% } %>
+
     <% if (typeof averageScore === 'string' && averageScore) { %>
       <p class="average-score">Gjennomsnittscore: <strong><%= averageScore %></strong> av 5</p>
     <% } %>
@@ -84,6 +88,7 @@
                   <button type="submit" class="vote-btn <%= vd.userVote === -1 ? 'vote-active' : '' %>" title="Stem negativt" aria-label="Stem negativt">👎</button>
                 </form>
               <% } %>
+              <a href="/reviews/<%= review._id %>/report" class="btn-report">Rapportér</a>
             </div>
           </li>
         <% }); %>

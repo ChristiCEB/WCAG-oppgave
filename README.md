@@ -63,4 +63,21 @@ npm run dev
 | `npm run dev`  | Starter med `--watch` (omstart ved endring) |
 | `npm run seed` | Kjører seed-script for nettsteder     |
 
+## Administrator
+
+Brukere har rolle `user` eller `admin`. Kun admin kan åpne **Admin**-siden (rapporter).
+
+**Gjøre en bruker til admin (mongosh):**
+
+```bash
+mongosh
+use wcag-oppgave
+db.users.updateOne(
+  { username: "ditt_brukernavn" },
+  { $set: { role: "admin" } }
+)
+```
+
+Bytt ut `ditt_brukernavn` med brukernavnet. Logg ut og inn igjen – da vises **Admin**-lenken i headeren, og du kan åpne `/admin/reports`.
+
 

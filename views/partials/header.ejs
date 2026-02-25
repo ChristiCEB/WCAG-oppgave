@@ -14,6 +14,9 @@
       <a href="/kontakt" class="header-link">Kontakt</a>
       <% if (typeof user !== 'undefined' && user) { %>
         <span class="user-status">Logget inn som <strong><%= user.username %></strong></span>
+        <% if (user.role === 'admin') { %>
+          <a href="/admin/reports" class="header-link">Admin</a>
+        <% } %>
         <form action="/logout" method="post" class="logout-form">
           <button type="submit" class="btn btn-outline">Logg ut</button>
         </form>

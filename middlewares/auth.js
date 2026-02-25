@@ -6,4 +6,15 @@ function requireAuth(req, res, next) {
   next();
 }
 
-module.exports = { requireAuth };
+/** Redirect til / hvis bruker ikke er admin – brukes på admin-ruter */
+function requireAdmin(req, res, next) {
+  if (!req.session || !req.session.user) {
+    return res.redirect('/login');
+  }
+  if (req.session.user.role !== 'admin') {
+    return res.redirect('/');
+  }
+  next();
+}
+
+module.exports = { requireAuth, requireAdmin };

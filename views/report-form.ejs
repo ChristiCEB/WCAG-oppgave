@@ -1,0 +1,22 @@
+<%- include('partials/header', { title: 'Rapportér vurdering' }) %>
+  <h1>Rapportér vurdering</h1>
+  <p class="lead">Beskriv hvorfor du rapporterer denne vurderingen. Rapporten sendes til administrator.</p>
+
+  <p class="report-context">
+    Vurdering av <strong><%= review.site ? review.site.title : 'nettsted' %></strong>
+    av <strong><%= review.user ? review.user.username : 'Ukjent' %></strong>
+    (<%= new Date(review.createdAt).toLocaleDateString('nb-NO') %>): «<%= review.summary %>»
+  </p>
+
+  <%- include('partials/errors') %>
+
+  <form method="post" action="/reviews/<%= review._id %>/report" class="kontakt-form">
+    <label for="report-comment">Kommentar (påkrevd)</label>
+    <textarea id="report-comment" name="comment" rows="4" required placeholder="Forklar hvorfor du rapporterer..."></textarea>
+    <button type="submit" class="btn btn-primary">Send rapport</button>
+  </form>
+
+  <p class="help-back">
+    <a href="/sites/<%= review.site && review.site._id ? review.site._id : '' %>">Tilbake til nettstedet</a>
+  </p>
+<%- include('partials/footer') %>

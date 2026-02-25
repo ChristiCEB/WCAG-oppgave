@@ -1,5 +1,6 @@
 const Review = require('../models/Review');
 const ReviewVote = require('../models/ReviewVote');
+const Report = require('../models/Report');
 const Site = require('../models/Site');
 const { buildVoteData } = require('./siteController');
 
@@ -96,7 +97,50 @@ async function postVote(req, res) {
   }
 }
 
+/** Vis skjema for å rapportere en vurdering */
+async function getReportForm(req, res) {
+  try {
+    const review = await Review.findById(req.params.reviewId).populate('site', 'title').populate('user', 'username');
+    if (!review) return res.status(404).send('Vurderingen ble ikke funnet.');
+    res.render('report-form', { title: 'Rapportér vurdering', review });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Noe gikk galt.');
+  }
+}
+
+/** Mottar rapport – validerer kommentar, lagrer Report, redirect med bekreftelse */
+async function postReport(req, res) {
+  const { reviewId } = req.params;
+  const comment = req.body.comment ? req.body.comment.trim() : '';
+  const feil = [];
+  if (!comment) feil.push('Du må skrive en kommentar til rapporten.');
+
+  try {
+    const review = await Review.findById(reviewId);
+    if (!review) return res.status(404).send('Vurderingen ble ikke funnet.');
+
+    if (feil.length > 0) {
+      const reviewPop = await Review.findById(reviewId).populate('site', 'title').populate('user', 'username');
+      return res.render('report-form', { title: 'Rapportér vurdering', review: reviewPop, feil });
+    }
+
+    await Report.create({
+      review: reviewId,
+      reportedBy: req.session?.user?.id || null,
+      comment,
+      status: 'open'
+    });
+    res.redirect(`/sites/${review.site}?reported=1`);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Noe gikk galt.');
+  }
+}
+
 module.exports = {
   postCreateReview,
-  postVote
+  postVote,
+  getReportForm,
+  postReport
 };
