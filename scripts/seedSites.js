@@ -2,32 +2,32 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const Site = require('../models/Site');
 
-// Bildene ligger i public/img og heter: digdir, nav, regjeringen, udir, brreg (jpg eller png)
+// Bildene ligger i public/img: digdir.png, nav.png, regjeringen.png, udir.png, brreg.png
 const sites = [
   {
     title: 'Digdir – Digitaliseringsdirektoratet',
     url: 'https://digdir.no',
-    imagePath: '/img/digdir.jpg'
+    imagePath: '/img/digdir.png'
   },
   {
     title: 'NAV',
     url: 'https://nav.no',
-    imagePath: '/img/nav.jpg'
+    imagePath: '/img/nav.png'
   },
   {
     title: 'Regjeringen.no',
     url: 'https://regjeringen.no',
-    imagePath: '/img/regjeringen.jpg'
+    imagePath: '/img/regjeringen.png'
   },
   {
     title: 'Udir – Utdanningsdirektoratet',
     url: 'https://udir.no',
-    imagePath: '/img/udir.jpg'
+    imagePath: '/img/udir.png'
   },
   {
     title: 'Brønnøysundregistrene',
     url: 'https://brreg.no',
-    imagePath: '/img/brreg.jpg'
+    imagePath: '/img/brreg.png'
   }
 ];
 
